@@ -1,0 +1,40 @@
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(255) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE sesiones (
+    id_sesion INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    token VARCHAR(255) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+);
+
+
+CREATE TABLE base (
+    cedula INT PRIMARY KEY,
+    nombre VARCHAR(20),
+    apellido VARCHAR(20),
+    vehiculo VARCHAR(20),
+    num_placa VARCHAR(10),
+    fecha_ingreso DATE,
+    hora_ingreso TIME,
+    fecha_salida DATE,
+    hora_salida TIME,
+    tiempo_pago INT
+);
+
+CREATE TABLE admin (
+    id_admin INT PRIMARY KEY AUTO_INCREMENT,
+    cedula_cliente INT,
+    FOREIGN KEY (cedula_cliente) REFERENCES base(cedula)
+);
+
+CREATE TABLE cli (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    tiempo_restante TIME,
+    cedula_cliente INT,
+    FOREIGN KEY (cedula_cliente) REFERENCES base(cedula)
+);
