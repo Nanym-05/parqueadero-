@@ -6,6 +6,8 @@ $sentencia_select = $conetion->prepare('SELECT * FROM vehiculos, tiempo, tipo_ta
 $sentencia_select->execute();
 $resultado = $sentencia_select->fetchAll();  
 
+
+
 $sentencia_delete = $conetion->prepare('UPDATE vehiculos SET visible = 0 WHERE id_vehi = :id_vehi');
 $sentencia_delete->bindParam(':id_vehi', $_GET['id_vehi'], PDO::PARAM_INT);
 $sentencia_delete->execute();
